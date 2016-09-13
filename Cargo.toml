@@ -1,0 +1,13 @@
+[package]
+name = "ble"
+version = "0.1.0"
+authors = ["Tim Ryan <id@timryan.org>"]
+description = "Rust library for BLE access."
+license = "MIT"
+repository = "https://github.com/tessel/rust-ble.git"
+
+[[bin]]
+name = "ble-scan"
+
+[dependencies]
+regex = "0.1"
