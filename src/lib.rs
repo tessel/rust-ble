@@ -23,8 +23,18 @@ impl Scan {
 
 #[derive(Debug, Eq, PartialEq, Clone)]
 pub struct Discovery {
-    name: String,
-    mac: Mac,
+    _name: String,
+    _mac: Mac,
+}
+
+impl Discovery {
+    pub fn name(&self) -> &str {
+        &self._name
+    }
+
+    pub fn mac(&self) -> &Mac {
+        &self._mac
+    }
 }
 
 #[derive(Debug, Eq, PartialEq, Clone)]
@@ -55,8 +65,8 @@ impl Iterator for Scan {
             let re = Regex::new(r#"(?m)^([A-F0-9]{2}):([A-F0-9]{2}):([A-F0-9]{2}):([A-F0-9]{2}):([A-F0-9]{2}):([A-F0-9]{2})\s*(.*?)[\r\n]*$"#).unwrap();
             if let Some(cap) = re.captures(&s) {
                 return Some(Discovery {
-                    name: cap.at(7).unwrap().to_string(),
-                    mac: Mac([
+                    _name: cap.at(7).unwrap().to_string(),
+                    _mac: Mac([
                         u8::from_str_radix(cap.at(1).unwrap(), 16).unwrap(),
                         u8::from_str_radix(cap.at(2).unwrap(), 16).unwrap(),
                         u8::from_str_radix(cap.at(3).unwrap(), 16).unwrap(),
